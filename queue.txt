@@ -1,0 +1,75 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+const int sz=100000;
+class Queue{
+	private :
+		int q[sz+1];
+		int front,rear;
+	public:
+		Queue(){
+			front=0;
+			rear=0;
+		}
+		bool isEmpty();
+		void enqueue(int val);
+		void dequeue();
+		int Front();
+		~Queue(){
+			
+		}
+};
+bool Queue::isEmpty(){
+	if(rear==front){
+		return true;
+	}
+	else{
+		return false;
+	}
+}
+void Queue::enqueue(int val){
+	if(rear!=sz){
+		q[rear]=val;
+		rear++;
+	}
+	else{
+		cout<<"Queue is Full\n";
+	}
+}
+void Queue::dequeue(){
+	if(!isEmpty()){
+		front++;
+	}
+	else{
+		cout<<"Queue is empty\n";
+	}
+}
+int Queue :: Front(){
+	if(!isEmpty()){
+		return q[front];
+	}
+	else{
+		cout<<"Queue is empty\n";
+		return -1;
+	}
+}
+int main(){
+	Queue q;
+	cout<<q.isEmpty()<<"\n";
+	q.enqueue(21);
+	q.enqueue(22);
+	q.enqueue(23);
+	q.enqueue(24);
+	cout<<q.Front()<<"\n";
+	q.dequeue();
+	cout<<q.Front()<<"\n";
+	q.dequeue();
+	cout<<q.Front()<<"\n";
+	q.dequeue();
+	cout<<q.Front()<<"\n";
+	q.dequeue();
+	cout<<q.Front()<<"\n";
+	q.dequeue();
+	return 0;
+}
