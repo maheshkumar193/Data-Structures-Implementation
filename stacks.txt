@@ -1,0 +1,70 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+const int sz=100000;
+
+class Stack
+{	
+	private :
+		int stk[sz+1];
+		int top;
+	public :
+		Stack(){
+			top=-1;
+		}
+		void push(int val);
+		void pop();
+		bool isEmpty();
+		int peak();
+		~Stack(){
+			
+		}
+};
+void Stack::push(int val){
+	if(top==sz){
+		cout<<"Stack overflow\n";
+	}
+	else{
+		top++;
+		stk[top]=val;
+	}
+}
+void Stack::pop(){
+	if(top==-1){
+		cout<<"Stack underflow\n";
+	}
+	else{
+		top--;
+	}
+}
+bool Stack::isEmpty(){
+	if(top==-1){
+		return true;
+	}
+	else{
+		return false;
+	}
+}
+int Stack::peak(){
+	if(top!=-1){
+		return stk[top];
+	}
+	else{
+		cout<<"Stack is empty\n";
+		return 0;
+	}
+}
+int main(){
+	Stack s;
+	cout<<s.isEmpty()<<"\n";
+	s.push(1);
+	s.push(2);
+	s.push(3);
+	s.push(4);
+	cout<<s.peak()<<"\n";
+	s.pop();
+	cout<<s.peak()<<"\n";
+	cout<<s.isEmpty()<<"\n";
+	return 0;
+}
