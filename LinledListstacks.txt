@@ -1,0 +1,73 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+class StackNode
+{
+	public:
+		int val;
+		StackNode *next;
+		StackNode *prev;
+};
+class Stack{
+	private : 
+		StackNode *root,*curr;
+	public:
+		Stack(){
+			root=new StackNode();
+			root->next=NULL;
+			root->prev=NULL;
+			curr=root;
+		}
+		void push(int val);
+		void pop();
+		int peak();
+		bool isEmpty();
+};
+void Stack::push(int val){
+	StackNode *temp=new StackNode();
+	temp->val=val;
+	temp->prev=curr;
+	curr->next=temp;
+	curr=curr->next;
+}
+void Stack::pop(){
+	if(curr==root){
+		cout<<"Stack underflow\n";
+	}
+	else{
+		StackNode *temp=curr;
+		curr=curr->prev;
+		curr->next=NULL;
+		temp->prev=NULL;
+		delete temp;
+	}
+}
+int Stack::peak(){
+	if(curr!=root){
+		return curr->val;
+	}
+	else{
+		cout<<"stack is empty\n";
+		return -1;
+	}
+}
+bool Stack::isEmpty(){
+	if(root==curr){
+		return true;
+	}
+	else{
+		return false;
+	}
+}
+int main(){
+	Stack s;
+	cout<<s.isEmpty()<<"\n";
+	s.push(1);
+	s.push(2);
+	s.push(3);
+	cout<<s.peak()<<"\n";
+	s.pop();
+	cout<<s.peak()<<"\n";
+	cout<<s.isEmpty()<<"\n";
+}
