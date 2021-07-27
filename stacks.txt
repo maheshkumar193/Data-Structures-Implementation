@@ -35,39 +35,56 @@ bool Stack<T>::isEmpty(){
 
 template<class T>
 void Stack<T>::push(T val){
-	if(top==sz){
-		cout<<"Stack overflow\n";
+	try{
+		if(top==sz){
+			throw "Stack overflow";
+		}
+		else{
+			top++;
+			stk[top]=val;
+		}
 	}
-	else{
-		top++;
-		stk[top]=val;
+	catch(const char *msg){
+		cout<<msg<<"\n";
 	}
+		
 }
 
 template<class T>
 void Stack<T>::pop(){
-	if(isEmpty()){
-		cout<<"Stack underflow\n";
+	try{
+		if(isEmpty()){
+			throw "Stack underflow";
+		}
+		else{
+			top--;
+		}	
 	}
-	else{
-		top--;
+	catch(const char* msg){
+		cout<<msg<<"\n";
 	}
 }
 
 
 template<class T>
 T Stack<T>::peak(){
-	if(!isEmpty()){
-		return stk[top];
+	try{
+		if(!isEmpty()){
+			return stk[top];
+		}
+		else{
+			throw "Stack is empty";
+		}
 	}
-	else{
-		cout<<"Stack is empty\n";
-		return 0;
+	catch(const char* msg){
+		cout<<msg<<"\n";
 	}
 }
 int main(){
 	Stack <int>s ;
 	Stack <char> s1;
+	s.peak();
+	s.pop();
 	cout<<s.isEmpty()<<"\n";
 	s.push(1);
 	s.push(2);
@@ -77,6 +94,9 @@ int main(){
 	s.pop();
 	cout<<s.peak()<<"\n";
 	cout<<s.isEmpty()<<"\n";
+//--------------------------------------------------------------------------------------------//
+	s1.peak();
+	s1.pop();
 	s1.push('m');
 	s1.push('a');
 	s1.push('h');
