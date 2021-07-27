@@ -83,6 +83,7 @@ T Stack<T>::peak(){
 int main(){
 	Stack <int>s ;
 	Stack <char> s1;
+	// int stack
 	s.peak();
 	s.pop();
 	cout<<s.isEmpty()<<"\n";
@@ -95,6 +96,7 @@ int main(){
 	cout<<s.peak()<<"\n";
 	cout<<s.isEmpty()<<"\n";
 //--------------------------------------------------------------------------------------------//
+	// char stack
 	s1.peak();
 	s1.pop();
 	s1.push('m');
