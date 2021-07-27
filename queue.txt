@@ -3,9 +3,10 @@
 using namespace std;
 
 const int sz=100000;
+template<class T>
 class Queue{
 	private :
-		int q[sz+1];
+		T q[sz+1];
 		int front,rear;
 	public:
 		Queue(){
@@ -13,14 +14,17 @@ class Queue{
 			rear=0;
 		}
 		bool isEmpty();
-		void enqueue(int val);
+		void enqueue(T val);
 		void dequeue();
-		int Front();
+		T Front();
 		~Queue(){
 			
 		}
 };
-bool Queue::isEmpty(){
+
+
+template<class T>
+bool Queue<T>::isEmpty(){
 	if(rear==front){
 		return true;
 	}
@@ -28,34 +32,57 @@ bool Queue::isEmpty(){
 		return false;
 	}
 }
-void Queue::enqueue(int val){
-	if(rear!=sz){
-		q[rear]=val;
-		rear++;
+
+template<class T>
+void Queue<T>::enqueue(T val){
+	try{
+		if(rear!=sz){
+			q[rear]=val;
+			rear++;
+		}
+		else{
+			throw "Queue is Full";
+		}
 	}
-	else{
-		cout<<"Queue is Full\n";
-	}
-}
-void Queue::dequeue(){
-	if(!isEmpty()){
-		front++;
-	}
-	else{
-		cout<<"Queue is empty\n";
-	}
-}
-int Queue :: Front(){
-	if(!isEmpty()){
-		return q[front];
-	}
-	else{
-		cout<<"Queue is empty\n";
-		return -1;
+	catch(const char* msg){
+		cout<<msg<<"\n";
 	}
 }
+
+template<class T>
+void Queue<T>::dequeue(){
+	try{
+		if(!isEmpty()){
+			front++;
+		}
+		else{
+			throw "Queue is empty";
+		}
+	}
+	catch(const char* msg){
+		cout<<msg<<"\n";
+	}
+}
+
+template<class T>
+T Queue<T> :: Front(){
+	try{
+		if(!isEmpty()){
+			return q[front];
+		}
+		else{
+			throw "Queue is empty";
+		}
+	}
+	catch(const char* msg){
+		cout<<msg<<"\n";
+	}
+}
+
 int main(){
-	Queue q;
+	Queue<int>q;
+	q.dequeue();
+	q.Front();
 	cout<<q.isEmpty()<<"\n";
 	q.enqueue(21);
 	q.enqueue(22);
@@ -71,5 +98,22 @@ int main(){
 	q.dequeue();
 	cout<<q.Front()<<"\n";
 	q.dequeue();
+//---------------------------------------------------------------//
+	Queue<char>q1;
+	q1.Front();
+	q1.dequeue();
+	q1.enqueue('m');
+	q1.enqueue('a');
+	q1.enqueue('h');
+	q1.enqueue('i');
+	cout<<q1.Front()<<"\n";
+	q1.dequeue();
+	cout<<q1.Front()<<"\n";
+	q1.dequeue();
+	cout<<q1.Front()<<"\n";
+	q1.dequeue();
+	cout<<q1.Front()<<"\n";
+	q1.dequeue();
+	q1.Front();
 	return 0;
 }
