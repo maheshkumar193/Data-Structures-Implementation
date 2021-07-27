@@ -80,6 +80,7 @@ T Queue<T> :: Front(){
 }
 
 int main(){
+	// int queue 
 	Queue<int>q;
 	q.dequeue();
 	q.Front();
@@ -99,6 +100,7 @@ int main(){
 	cout<<q.Front()<<"\n";
 	q.dequeue();
 //---------------------------------------------------------------//
+	// char queue
 	Queue<char>q1;
 	q1.Front();
 	q1.dequeue();
