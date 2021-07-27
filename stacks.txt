@@ -4,24 +4,37 @@ using namespace std;
 
 const int sz=100000;
 
+template<class T>
 class Stack
 {	
 	private :
-		int stk[sz+1];
+		T stk[sz+1];
 		int top;
 	public :
 		Stack(){
 			top=-1;
 		}
-		void push(int val);
+		void push(T val);
 		void pop();
 		bool isEmpty();
-		int peak();
+		T peak();
 		~Stack(){
 			
 		}
 };
-void Stack::push(int val){
+
+template<class T>
+bool Stack<T>::isEmpty(){
+	if(top==-1){
+		return true;
+	}
+	else{
+		return false;
+	}
+}
+
+template<class T>
+void Stack<T>::push(T val){
 	if(top==sz){
 		cout<<"Stack overflow\n";
 	}
@@ -30,24 +43,21 @@ void Stack::push(int val){
 		stk[top]=val;
 	}
 }
-void Stack::pop(){
-	if(top==-1){
+
+template<class T>
+void Stack<T>::pop(){
+	if(isEmpty()){
 		cout<<"Stack underflow\n";
 	}
 	else{
 		top--;
 	}
 }
-bool Stack::isEmpty(){
-	if(top==-1){
-		return true;
-	}
-	else{
-		return false;
-	}
-}
-int Stack::peak(){
-	if(top!=-1){
+
+
+template<class T>
+T Stack<T>::peak(){
+	if(!isEmpty()){
 		return stk[top];
 	}
 	else{
@@ -56,7 +66,8 @@ int Stack::peak(){
 	}
 }
 int main(){
-	Stack s;
+	Stack <int>s ;
+	Stack <char> s1;
 	cout<<s.isEmpty()<<"\n";
 	s.push(1);
 	s.push(2);
@@ -66,5 +77,17 @@ int main(){
 	s.pop();
 	cout<<s.peak()<<"\n";
 	cout<<s.isEmpty()<<"\n";
+	s1.push('m');
+	s1.push('a');
+	s1.push('h');
+	s1.push('i');
+	cout<<s1.peak()<<"\n";
+	s1.pop();
+	cout<<s1.peak()<<"\n";
+	s1.pop();
+	cout<<s1.peak()<<"\n";
+	s1.pop();
+	cout<<s1.peak()<<"\n";
+	s1.pop();
 	return 0;
 }
