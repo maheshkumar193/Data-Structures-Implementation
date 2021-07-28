@@ -117,6 +117,7 @@ void maxHeap<T> :: pop(){
 
 int main(){ 
 	maxHeap<int> mH;
+	mH.push(100);
 	mH.push(1);
 	mH.push(2);
 	mH.push(-2);
