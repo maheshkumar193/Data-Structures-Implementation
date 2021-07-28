@@ -2,57 +2,34 @@
 
 using namespace std;
 
+template<class T>
 class StackNode
 {
 	public:
-		int val;
-		StackNode *next;
-		StackNode *prev;
+		T val;
+		StackNode<T> *next;
+		StackNode<T> *prev;
 };
+
+template<class T>
 class Stack{
 	private : 
-		StackNode *root,*curr;
+		StackNode<T> *root,*curr;
 	public:
 		Stack(){
-			root=new StackNode();
+			root=new StackNode<T>();
 			root->next=NULL;
 			root->prev=NULL;
 			curr=root;
 		}
 		void push(int val);
 		void pop();
-		int peak();
+		T peak();
 		bool isEmpty();
 };
-void Stack::push(int val){
-	StackNode *temp=new StackNode();
-	temp->val=val;
-	temp->prev=curr;
-	curr->next=temp;
-	curr=curr->next;
-}
-void Stack::pop(){
-	if(curr==root){
-		cout<<"Stack underflow\n";
-	}
-	else{
-		StackNode *temp=curr;
-		curr=curr->prev;
-		curr->next=NULL;
-		temp->prev=NULL;
-		delete temp;
-	}
-}
-int Stack::peak(){
-	if(curr!=root){
-		return curr->val;
-	}
-	else{
-		cout<<"stack is empty\n";
-		return -1;
-	}
-}
-bool Stack::isEmpty(){
+
+template<class T>
+bool Stack<T>::isEmpty(){
 	if(root==curr){
 		return true;
 	}
@@ -60,8 +37,55 @@ bool Stack::isEmpty(){
 		return false;
 	}
 }
+
+template<class T>
+void Stack<T>::push(int val){
+	StackNode<T> *temp=new StackNode<T>();
+	temp->val=val;
+	temp->prev=curr;
+	curr->next=temp;
+	curr=curr->next;
+}
+
+template<class T>
+void Stack<T>::pop(){
+	try{
+		if(curr==root){
+			throw "Stack underflow";
+		}
+		else{
+			StackNode<T> *temp=curr;
+			curr=curr->prev;
+			curr->next=NULL;
+			temp->prev=NULL;
+			delete temp;
+		}
+	}
+	catch(const char *msg){
+		cout<<msg<<"\n";
+	}
+		
+}
+
+template<class T>
+T Stack<T>::peak(){
+	try{
+		if(curr!=root){
+			return curr->val;
+		}
+		else{
+			throw "stack is empty";
+		}
+	}
+	catch(const char* msg){
+		cout<<msg<<"\n";
+	}
+}
+
 int main(){
-	Stack s;
+	Stack<int> s;
+	s.peak();
+	s.pop();
 	cout<<s.isEmpty()<<"\n";
 	s.push(1);
 	s.push(2);
@@ -70,4 +94,24 @@ int main(){
 	s.pop();
 	cout<<s.peak()<<"\n";
 	cout<<s.isEmpty()<<"\n";
+//---------------------------------------------------------------//
+	Stack<char> s1;
+	s1.peak();
+	s1.pop();
+	cout<<s1.isEmpty()<<"\n";
+	s1.push('m');
+	s1.push('a');
+	s1.push('h');
+	s1.push('i');
+	cout<<s1.peak()<<"\n";
+	s1.pop();
+	cout<<s1.peak()<<"\n";
+	s1.pop();
+	cout<<s1.peak()<<"\n";
+	s1.pop();
+	cout<<s1.peak()<<"\n";
+	s1.pop();
+	s1.peak();
+	s1.pop();
+	cout<<s1.isEmpty()<<"\n";
 }
