@@ -6,10 +6,11 @@ const int sz=100000;
 template<class T>
 class Queue{
 	private :
-		T q[sz+1];
+		T *q;
 		int front,rear;
 	public:
 		Queue(){
+			q=new T[sz+1];
 			front=0;
 			rear=0;
 		}
@@ -18,7 +19,7 @@ class Queue{
 		void dequeue();
 		T Front();
 		~Queue(){
-			
+			delete [] q;
 		}
 };
 
@@ -80,10 +81,10 @@ T Queue<T> :: Front(){
 }
 
 int main(){
-	// int queue 
+	// data type is int 
 	Queue<int>q;
 	q.dequeue();
-	q.Front();
+	cout<<q.Front()<<"\n";
 	cout<<q.isEmpty()<<"\n";
 	q.enqueue(21);
 	q.enqueue(22);
@@ -99,8 +100,7 @@ int main(){
 	q.dequeue();
 	cout<<q.Front()<<"\n";
 	q.dequeue();
-//---------------------------------------------------------------//
-	// char queue
+	// data type is char
 	Queue<char>q1;
 	q1.Front();
 	q1.dequeue();
