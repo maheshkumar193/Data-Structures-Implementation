@@ -8,10 +8,11 @@ template<class T>
 class Stack
 {	
 	private :
-		T stk[sz+1];
+		T *stk;
 		int top;
 	public :
 		Stack(){
+			stk=new T[sz+1];
 			top=-1;
 		}
 		void push(T val);
@@ -19,7 +20,7 @@ class Stack
 		bool isEmpty();
 		T peak();
 		~Stack(){
-			
+			delete [] stk;
 		}
 };
 
@@ -82,9 +83,8 @@ T Stack<T>::peak(){
 }
 int main(){
 	Stack <int>s ;
-	Stack <char> s1;
-	// int stack
-	s.peak();
+	// int as data type
+	cout<<s.peak()<<"\n";
 	s.pop();
 	cout<<s.isEmpty()<<"\n";
 	s.push(1);
@@ -95,8 +95,8 @@ int main(){
 	s.pop();
 	cout<<s.peak()<<"\n";
 	cout<<s.isEmpty()<<"\n";
-//--------------------------------------------------------------------------------------------//
-	// char stack
+	// char as data type;
+	Stack <char> s1;
 	s1.peak();
 	s1.pop();
 	s1.push('m');
