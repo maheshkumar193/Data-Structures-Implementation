@@ -27,6 +27,7 @@ class Stack{
 		T peak();
 		bool isEmpty();
 		~Stack(){
+			delete root;
 		}
 };
 
