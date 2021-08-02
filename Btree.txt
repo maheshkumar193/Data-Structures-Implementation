@@ -1,5 +1,12 @@
 
+Each node is of the form 
+< P , {K,D} , P , {K , D} , ........ , {K , D} , P >
+Where 
+P is child Pointer
+K is key
+D is Data pointer
 
+every key occurs only once
 
 1. Searching operation 
 let x be the value that we want to search
