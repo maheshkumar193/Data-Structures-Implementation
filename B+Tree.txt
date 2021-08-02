@@ -1,4 +1,22 @@
+intermediate node are like
 
+< P , K , P , K ............, K , p>
+
+Leaf nodes are of the form 
+
+< { D, K} , { D, K} ,.........., {D , K} , NEXT LEAF POINTER> 
+
+Where 
+
+D is Data pointer
+
+K is key 
+
+P is child pointer 
+
+all leaves are connect as linked list 
+
+a key can occur atmost twice
 
 1. Searching operation 
 let x be the value that we want to search
