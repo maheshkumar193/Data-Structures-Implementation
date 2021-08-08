@@ -657,8 +657,8 @@ int main(){
 	t.inOrder();
 	t.postOrder();
 	cout<<"-----------\n";
-	// cout<<t.find(6)<<"\n";
-	// cout<<t.find(4)<<"\n";
+	cout<<t.find(6)<<"\n";
+	cout<<t.find(4)<<"\n";
 	
 	t.push(6);
 	t.push(7);
