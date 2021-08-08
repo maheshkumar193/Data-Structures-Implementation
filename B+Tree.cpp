@@ -1,60 +1,60 @@
-intermediate node are like
-
-< P , K , P , K ............, K , p>
-
-Leaf nodes are of the form 
-
-< { D, K} , { D, K} ,.........., {D , K} , NEXT LEAF POINTER> 
-
-Where 
-
-D is Data pointer
-
-K is key 
-
-P is child pointer 
-
-all leaves are connect as linked list 
-
-a key can occur atmost twice
-
-1. Searching operation 
-let x be the value that we want to search
-from root search for first occurence of a key at which key value >= x 
-go to pointer left to that key (if not found , it will right most pointer of the node )
-do this recursively untill u hit the leaf node 
-if not found in leaf , return NULL;
-
-2 . Insertion
-always insert a new node at leaf
-always make sure that node should not overflow with keys i.e max keys <= order - 1;
-in case of a over flow , first insert the value in its appropriate position, then take the middle element to the parent , assign left pointer to node in which keys are lower
-assign right pointer to node where higher keys are present
-if in parent node overflow occurs repeat the same.
-
-3 . Deletion 
-it is the most complex  opertion 
-here we always need to ensure that node doesnot underflows i.e node should always have min no.of ways
-there are several cases 
-let x be the min no.of keys required in a node
-
-case 1: key present only in leaf
-
-case 1.1: if we want to delete an element and that node has more no.of keys than x ;
-then simply delete it
-case 1.2: 
-if we want to delete an element and that node has no.of keys exactly equal to x ;
-case 1.2.1: left sibling has more keys than x
-make the inorder predecessor as parent while deleting it from left node and keep previous parent in place of current deleted key
-case 1.2.2: right sibling has has more keys than x
-make the inorder successor as parent and keep previous parent in place of current deleted key
-case 1.2.3: when both right and left siblings have exactly x keys
-merge current node , parent , one of right or left sibling and decide the new parent by splitting with respective medain
-
-case 2: keys present in intermediate stages
-case 1.2 can be generalized even for keys which are present in intermediate stages
-
-case 3: shrinking of height 
+//intermediate node are like
+//
+//< P , K , P , K ............, K , p>
+//
+//Leaf nodes are of the form 
+//
+//< { D, K} , { D, K} ,.........., {D , K} , NEXT LEAF POINTER> 
+//
+//Where 
+//
+//D is Data pointer
+//
+//K is key 
+//
+//P is child pointer 
+//
+//all leaves are connect as linked list 
+//
+//a key can occur atmost twice
+//
+//1. Searching operation 
+//let x be the value that we want to search
+//from root search for first occurence of a key at which key value >= x 
+//go to pointer left to that key (if not found , it will right most pointer of the node )
+//do this recursively untill u hit the leaf node 
+//if not found in leaf , return NULL;
+//
+//2 . Insertion
+//always insert a new node at leaf
+//always make sure that node should not overflow with keys i.e max keys <= order - 1;
+//in case of a over flow , first insert the value in its appropriate position, then take the middle element to the parent , assign left pointer to node in which keys are lower
+//assign right pointer to node where higher keys are present
+//if in parent node overflow occurs repeat the same.
+//
+//3 . Deletion 
+//it is the most complex  opertion 
+//here we always need to ensure that node doesnot underflows i.e node should always have min no.of ways
+//there are several cases 
+//let x be the min no.of keys required in a node
+//
+//case 1: key present only in leaf
+//
+//case 1.1: if we want to delete an element and that node has more no.of keys than x ;
+//then simply delete it
+//case 1.2: 
+//if we want to delete an element and that node has no.of keys exactly equal to x ;
+//case 1.2.1: left sibling has more keys than x
+//make the inorder predecessor as parent while deleting it from left node and keep previous parent in place of current deleted key
+//case 1.2.2: right sibling has has more keys than x
+//make the inorder successor as parent and keep previous parent in place of current deleted key
+//case 1.2.3: when both right and left siblings have exactly x keys
+//merge current node , parent , one of right or left sibling and decide the new parent by splitting with respective medain
+//
+//case 2: keys present in intermediate stages
+//case 1.2 can be generalized even for keys which are present in intermediate stages
+//
+//case 3: shrinking of height 
 
 #include <climits>
 #include <fstream>
